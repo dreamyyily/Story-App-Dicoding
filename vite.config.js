@@ -2,10 +2,10 @@ import { defineConfig } from 'vite';
 import { resolve } from 'path';
 
 export default defineConfig({
-  base: '/Dicoding-Story-App/',
+  base: '/Story-App-Dicoding/',
   root: 'src',                                    
   build: {
-    outDir: '../dist',                           
+    outDir: '../docs',                           
     emptyOutDir: true,
   },
   server: {
