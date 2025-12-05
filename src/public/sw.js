@@ -23,24 +23,28 @@ self.addEventListener("fetch", (event) => {
   }
 });
 
-self.addEventListener("push", async (event) => {
-  if (!event.data) return;
+self.addEventListener("push", (event) => {
+  let title = "Story berhasil dibuat";
+  let body = "Anda telah membuat story baru";
 
-  if (Notification.permission !== "granted") {
-    console.warn("Push received but notification permission not granted.");
-    return;
+  if (event.data) {
+    try {
+      const data = event.data.json();
+
+      title = data.title || title;
+      body = data.options?.body || body;
+    } catch (e) {
+      body = event.data.text();
+    }
   }
 
-  let data = {};
-
-  try {
-    data = event.data.json();
-  } catch (err) {
-    data = { title: "Notification", body: event.data.text() };
-  }
-
-  const title = data.title || "Story App Notification";
-  const body = data.body || "You have a new notification";
+  const options = {
+    body: body,
+    icon: "/icons/icon-192.png",  
+    badge: "/icons/icon-512.png",
+    tag: "story-creation",
+    renotify: true
+  };
 
   event.waitUntil(
     (async () => {
@@ -53,6 +57,5 @@ self.addEventListener("push", async (event) => {
 
 self.addEventListener("notificationclick", (event) => {
   event.notification.close();
-
   event.waitUntil(clients.openWindow(self.registration.scope));
 });
