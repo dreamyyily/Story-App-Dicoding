@@ -265,24 +265,6 @@ export default class StoryFormPage {
     try {
       const response = await addStory(formData);
 
-      // INI DIA TRIGGER PUSH NOTIFIKASI KE SEMUA USER!
-      if ("serviceWorker" in navigator && "PushManager" in window) {
-        navigator.serviceWorker.ready.then((registration) => {
-          registration.active.postMessage({
-            type: "NEW_STORY",
-            payload: {
-              title: "Cerita Baru!",
-              body: `"${document
-                .getElementById("desc")
-                .value.trim()
-                .substring(0, 50)}..."`,
-              icon: "./icons/icon-192.png",
-              url: "/",
-            },
-          });
-        });
-      }
-
       alert("Cerita berhasil ditambahkan!");
       window.location.hash = "/";
     } catch (err) {

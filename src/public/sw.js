@@ -47,11 +47,7 @@ self.addEventListener("push", (event) => {
   };
 
   event.waitUntil(
-    (async () => {
-      await self.registration.showNotification(title, {
-        body,
-      });
-    })()
+    self.registration.showNotification(title, options)
   );
 });
 
