@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>You Are Offline</title>
+
+    <style>
+      :root {
+        --primary: #4f46e5;
+        --text: #333;
+        --bg: #f7f7f7;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: system-ui, sans-serif;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .container {
+        max-width: 450px;
+        background: #ffffff;
+        padding: 30px 25px;
+        border-radius: 12px;
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
+        animation: fadeIn 0.4s ease;
+      }
+
+      img {
+        width: 120px;
+        margin-bottom: 20px;
+        opacity: 0.9;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+        color: var(--primary);
+      }
+
+      p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+        line-height: 1.5;
+      }
+
+      .retry-btn {
+        padding: 12px 18px;
+        background: var(--primary);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: 0.2s ease;
+      }
+
+      .retry-btn:hover {
+        background: #3730a3;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>You’re Offline</h1>
+
+      <p>
+        It looks like your internet connection is lost. Please reconnect and
+        refresh the page.
+      </p>
+
+      <button class="retry-btn" onclick="window.location.reload()">
+        Retry Connection
+      </button>
+    </div>
+  </body>
+</html>
